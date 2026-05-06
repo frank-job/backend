@@ -69,7 +69,7 @@ header {
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
-    /* height: 60px; */
+    /* height: 20px; */
     z-index: 100;
 }
 
@@ -96,7 +96,7 @@ nav ul li a:hover {
     color: var(--primary);
 }
 
-/* Main Content Area */
+
 main {
     padding: 40px 0;
     min-height: 80vh;
@@ -108,7 +108,6 @@ h1 {
     font-size: 2.5rem;
 }
 
-/* Grid for Categories/Projects */
 ul.grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -132,7 +131,7 @@ ul.grid-list li:hover {
     transform: translateY(-5px);
 }
 
-/* Footer */
+
 footer {
     background-color: var(--secondary);
     color: var(--white);
@@ -141,11 +140,11 @@ footer {
     margin-top: 40px;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
-        /* height: auto; */
+       
     }
     nav ul {
         margin-top: 15px;
@@ -155,10 +154,10 @@ footer {
     }
 }
 
-/* --- UPDATED RESPONSIVE SECTION --- */
+
 
 @media (max-width: 768px) {
-    /* Center the logo and nav links */
+
     nav {
         flex-direction: column;
         text-align: center;
@@ -170,21 +169,21 @@ footer {
     }
 
     nav ul {
-        flex-direction: row; /* Keep links side-by-side on tablets */
-        flex-wrap: wrap;    /* Wrap them if there's no room */
+        flex-direction: row; 
+        flex-wrap: wrap;    
         justify-content: center;
     }
 
     nav ul li {
-        margin: 5px 10px; /* Give links more space to tap with a finger */
+        margin: 5px 10px; 
     }
 
     nav ul li a {
-        margin-left: 0; /* Remove the desktop-only left margin */
+        margin-left: 0; 
     }
 
     h1 {
-        font-size: 2rem; /* Shrink title slightly so it doesn't break lines */
+        font-size: 2rem; 
         text-align: center;
     }
     footer  {
@@ -193,7 +192,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-    /* On very small phones, stack the links vertically */
+    
     nav ul {
         flex-direction: column;
     }
@@ -202,9 +201,33 @@ footer {
         margin: 8px 0;
     }
 
-    /* Make the cards full width on tiny screens */
+    
     ul.grid-list {
         grid-template-columns: 1fr;
     }
    
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0;
+}
+
+.organizations-list li, .projects-list li {
+    background: white;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+img {
+    max-width: 150px; 
+    height: auto;
+    margin-bottom: 10px;
 }
