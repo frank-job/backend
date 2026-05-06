@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
     background-color: lightblue;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -27,4 +27,184 @@ body {
             }
         }
     }
-} 
+}  */
+
+
+
+:root {
+    --primary: #0b0000; 
+    --primary-dark: #0f1010;
+    --secondary: #0760ed; 
+    --background: #f8fafc;
+    --text: #171818;
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--background);
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+header {
+    background-color: var(--secondary);
+    color: var(--white);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    /* height: 60px; */
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary);
+}
+
+/* Main Content Area */
+main {
+    padding: 40px 0;
+    min-height: 80vh;
+}
+
+h1 {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+/* Grid for Categories/Projects */
+ul.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    list-style: none;
+    margin-top: 30px;
+}
+
+ul.grid-list li {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary);
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+ul.grid-list li:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        /* height: auto; */
+    }
+    nav ul {
+        margin-top: 15px;
+    }
+    nav ul li a {
+        margin: 0 10px;
+    }
+}
+
+/* --- UPDATED RESPONSIVE SECTION --- */
+
+@media (max-width: 768px) {
+    /* Center the logo and nav links */
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: row; /* Keep links side-by-side on tablets */
+        flex-wrap: wrap;    /* Wrap them if there's no room */
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* Give links more space to tap with a finger */
+    }
+
+    nav ul li a {
+        margin-left: 0; /* Remove the desktop-only left margin */
+    }
+
+    h1 {
+        font-size: 2rem; /* Shrink title slightly so it doesn't break lines */
+        text-align: center;
+    }
+    footer  {
+        padding: 1.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* On very small phones, stack the links vertically */
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 8px 0;
+    }
+
+    /* Make the cards full width on tiny screens */
+    ul.grid-list {
+        grid-template-columns: 1fr;
+    }
+   
+}
