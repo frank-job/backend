@@ -1,4 +1,9 @@
 import { Pool } from 'pg';
+const { Pool } = pkg;
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 /**
  * Connection pool for PostgreSQL database.
@@ -13,7 +18,9 @@ import { Pool } from 'pg';
  */
 const pool = new Pool({
     connectionString: process.env.DB_URL,
-    ssl: true
+    ssl: {
+    rejectUnauthorized: false // <--- THIS LINE IS THE FIX
+  }
 });
 
 /**
