@@ -1,5 +1,5 @@
 
-
+import { getAllCategories } from './src/models/categories.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { testConnection } from './src/models/db.js';
 import express from 'express';
@@ -36,27 +36,25 @@ app.get('/projects', async (req, res) => {
 
 
 app.get('/categories', async (req, res) => {
-    const title = 'Project Categories';
+    // const title = 'Project Categories';
+
+    const categories = await getAllCategories();
+        const title = 'Service Project Categories';
+        
+        // Render the page with the data
+        res.render('categories', { title, categories });
+
     res.render('categories', { title });
 });
-
-
-
-
-// app.get('/', (req, res) => {
-//     // Redirect to organizations page or render a simple message
-//     res.redirect('/organizations');
-// });
-
-
 
 app.get('/organizations', async (req, res) => {
     // Log the retrieved organizations to verify data
 
 
     const title = 'Our Partner Organizations';
+  ;
     const organizations = await getAllOrganizations();
-    // console.log('organizations', organizations);
+    console.log('organizations', organizations);
     res.render('organizations', { title, organizations });
 });
 
@@ -72,3 +70,26 @@ app.listen(PORT, async () => {
         console.error('Error connecting to the database:', error);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.get('/', (req, res) => {
+//     // Redirect to organizations page or render a simple message
+//     res.redirect('/organizations');
