@@ -110,10 +110,11 @@ h1 {
 
 ul.grid-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 3fr));
     gap: 20px;
     list-style: none;
     margin-top: 30px;
+    height: 500px;
 }
 
 ul.grid-list li {
