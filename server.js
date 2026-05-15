@@ -44,7 +44,8 @@ app.get('/categories', async (req, res) => {
         // Render the page with the data
         res.render('categories', { title, categories });
 
-    res.render('categories', { title });
+    // res.render('categories', { title, categories });
+    res.render('categories', { title,  });
 });
 
 app.get('/organizations', async (req, res) => {

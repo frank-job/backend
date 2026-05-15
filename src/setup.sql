@@ -48,3 +48,4 @@ INSERT INTO category (category_name) VALUES
 ('Educational'), 
 ('Community Service'), 
 ('Health and Wellness');
+
