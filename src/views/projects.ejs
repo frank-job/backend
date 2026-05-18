@@ -1,13 +1,12 @@
-
-
 <%- include('partials/header') %>
 
-    <main class="container">
+    <main class="">
         <h1>
             <%= title %>
         </h1>
 
         <ul class="grid-list">
+
             <% projects.forEach(project=> { %>
                 <li>
                     <strong>
@@ -29,5 +28,4 @@
         </ul>
     </main>
 
-<%- include('partials/footer') %>
-
+    <%- include('partials/footer') %>
