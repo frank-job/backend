@@ -1,12 +1,33 @@
-<%- include ('partials/header') %>
-    <main>
-        <h1><%= title %></h1>
 
-       <h2>Upcoming Service Projects</h2>
-<ul>
-    <li>Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
-    <li>Food Drive - Help collect and distribute food to those in need.</li>
-    <li>Community Tutoring - Volunteer to tutor students in various subjects.</li>
-</ul>
+
+<%- include('partials/header') %>
+
+    <main class="container">
+        <h1>
+            <%= title %>
+        </h1>
+
+        <ul class="grid-list">
+            <% projects.forEach(project=> { %>
+                <li>
+                    <strong>
+                        <%= project.title %>
+                    </strong>
+                    <p><strong>Location:</strong>
+                        <%= project.location %>
+                    </p>
+                    <p><strong>Date:</strong>
+                        <%= project.project_date %>
+                    </p>
+                    <p class="category-desc">
+                        <%= project.description %>
+                    </p>
+
+                    <a href="#" class="btn-small">Sign Up to Help</a>
+                </li>
+                <% }); %>
+        </ul>
     </main>
-<%- include ('partials/footer') %>
+
+<%- include('partials/footer') %>
+

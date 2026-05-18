@@ -49,17 +49,17 @@ body {
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
+    /* line-height: 1.6; */
     color: var(--text);
     background-color: var(--background);
 }
 
-
+/* 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
+} */
 
 
 header {
@@ -99,7 +99,7 @@ nav ul li a:hover {
 
 main {
     padding: 40px 0;
-    min-height: 80vh;
+    /* min-height: 80vh; */
 }
 
 h1 {
@@ -114,7 +114,7 @@ ul.grid-list {
     gap: 20px;
     list-style: none;
     margin-top: 30px;
-    height: 400px;
+    /* height: 400px; */
 }
 
 ul.grid-list li {
@@ -138,10 +138,18 @@ footer {
     color: var(--white);
     text-align: center;
     padding: 2rem 0;
-    margin-top: 40px;
+    margin-top: 60px;
+        /* Corrected: margin-top */
+        clear: both;
+        /* This tells the footer to stay away from floating items */
+        width: 100%;
 }
 
-
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -234,39 +242,36 @@ img {
 }
 
 
-/* --- ADVANCED PIC STYLING FOR CATEGORY CARDS --- */
 
 ul.grid-list li img {
-    /* 1. Size and Shape */
-    width: 100%;             /* Fills the card width */
-    height: 180px;           /* Fixed height for all images */
-    object-fit: cover;       /* CRITICAL: Crops image to fit without stretching */
-    border-radius: 8px;      /* Slightly rounded corners */
+  
+    width: 100%;             
+    height: 180px;           
+    object-fit: cover;       
+    border-radius: 8px;     
     
-    /* 2. Visual Effects */
+   
     display: block;
     margin-bottom: 20px;
     box-shadow: var(--shadow-sm);
-    border: 2px solid transparent; /* Prepare for hover effect */
-    
-    /* 3. Smooth Animation */
+    border: 2px solid transparent; 
+
     transition: var(--transition);
-    filter: brightness(0.95); /* Slightly muted looks more professional */
+    filter: brightness(0.95);
 }
 
-/* --- HOVER EFFECTS --- */
+
 
 ul.grid-list li:hover img {
-    transform: scale(1.03);      /* Slight zoom in */
-    filter: brightness(1);       /* Brightens back to normal */
-    border-color: var(--accent); /* Adds your 10% pop color border */
+    transform: scale(1.03);      
+    filter: brightness(1);      
+    border-color: var(--accent); 
     box-shadow: var(--shadow-md);
 }
 
-/* --- IMAGE WRAPPER (Optional for extra "Clean" look) --- */
-/* If your images have transparent backgrounds, add this: */
+
 .img-container {
-    background-color: #f1f5f9;   /* Light gray background */
+    background-color: #f1f5f9;  
     padding: 10px;
     border-radius: var(--radius);
     margin-bottom: 15px;
@@ -276,7 +281,8 @@ ul.grid-list li:hover img {
 }
 
 .btn-small {
-    padding: 8px 16px;
+    margin-bottom: 100px;
+    padding: 4px 5px;
     font-size: 0.875rem;
     border-radius: 4px;
     background-color: var(--secondary);
@@ -285,5 +291,10 @@ ul.grid-list li:hover img {
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none;
-    margin-bottom: 15px;
+    /* /* margin-bottom: 10px; */
+} 
+
+.btn-small:hover {
+    background-color: var(--white);
+    color: var(--secondary);
 }
