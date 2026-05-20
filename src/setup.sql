@@ -39,9 +39,9 @@ CREATE TABLE IF NOT EXISTS project (
 INSERT INTO project (organization_id, title, description, location, project_date)
 VALUES
 -- Projects for BrightFuture Builders (Org ID: 1)
-(1, 'Tiny Home Construction', 'Help build sustainable small homes for local families.', 'East Side Lot', 'June 15, 2026'),
+(1, 'Tiny Home Construction', 'Help build sustainable small homes for local families.', 'East Side Lot, ', 'June 15, 2026'),
 (1, 'Community Center Paint', 'Refreshing the interior of the youth community center.', 'Downtown Center', 'July 10, 2026'),
-(1, 'Solar Panel Workshop', 'Installation of solar panels on a nonprofit office.', 'Green Office Park', 'August 05, 2026'),
+(1, 'Solar Panel Workshop', 'Installation of solar panels on a non profit office.', 'Green Office Park,', 'August 05, 2026'),
 (1, 'Ramp Build Day', 'Building wheelchair ramps for elderly residents.', 'Various Locations', 'September 22, 2026'),
 (1, 'Shelter Roof Repair', 'Patching and fixing the roof of the homeless shelter.', 'North Shelter', 'October 12, 2026'),
 

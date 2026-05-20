@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+    <main class="container-project-details">
+        <section class="project-details-card">
+            <h1>
+                <%= project.title %>
+            </h1>
+
+            <div class="meta-info">
+                <p><strong>Date:</strong>
+                    <%= project.date %>
+                </p>
+                <p><strong>Location:</strong>
+                    <%= project.location %>
+                </p>
+                <p><strong>Partner Organization:</strong>
+                    <!-- Requirement: Link back to the organization details -->
+                    <a href="/organization/<%= project.organization_id %>" class="org-link">
+                        <%= project.organization_name %>
+                    </a>
+                </p>
+            </div>
+
+            <hr>
+
+            <div class="project-description">
+                <h2>About this Project</h2>
+                <p>
+                    <%= project.description %>
+                </p>
+            </div>
+
+            <div class="actions">
+                <a href="/projects" class="btn-small secondary">Back to Projects</a>
+                <button class="btn-small">Sign Up to Volunteer</button>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>

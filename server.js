@@ -1,8 +1,9 @@
 
-import { getAllCategories } from './src/models/categories.js';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllProjects } from './src/models/projects.js';
+// import { getAllCategories } from './src/models/categories.js';
+// import { getAllOrganizations } from './src/models/organizations.js';
+// import { getAllProjects } from './src/models/projects.js';
 import { testConnection } from './src/models/db.js';
+import router from './src/routes.js';   
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -38,37 +39,43 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'src/views'));
 
-app.get('/', async (req, res) => {
-    const title = 'Home';
-    res.render('home', { title });
-});
+// app.get('/', async (req, res) => {
+//     const title = 'Home';
+//     res.render('home', { title });
+// });
 
 
-app.get('/projects', async (req, res) => {
-    const projects = await getAllProjects();
-    const title = 'Service Projects';
+// app.get('/projects', async (req, res) => {
+//     const projects = await getAllProjects();
+//     const title = 'Service Projects';
     
    
-    res.render('projects', { title: 'projects', projects });
-});
+//     res.render('projects', { title: 'projects', projects });
+// });
 
 
-app.get('/categories', async (req, res) => {
-    // const title = 'Project Categories';
-    const categories = await getAllCategories();
-    const title = 'Service Project Categories';
-    // Render the page with the data
-    res.render('categories', { title: 'Categories', categories });
+// app.get('/categories', async (req, res) => {
+//     // const title = 'Project Categories';
+//     const categories = await getAllCategories();
+//     const title = 'Service Project Categories';
+//     // Render the page with the data
+//     res.render('categories', { title: 'Categories', categories });
 
-});
+// });
 
-app.get('/organizations', async (req, res) => {
-    // Log the retrieved organizations to verify data
-    const title = 'Our Partner Organizations';
-    const organizations = await getAllOrganizations();
-    // console.log('organizations', organizations);
-    res.render('organizations', { title, organizations });
-});
+// app.get('/organizations', async (req, res) => {
+//     // Log the retrieved organizations to verify data
+//     const title = 'Our Partner Organizations';
+//     const organizations = await getAllOrganizations();
+//     // console.log('organizations', organizations);
+//     res.render('organizations', { title, organizations });
+// });
+
+// Use the router for all routes
+app.use(router);
+
+
+
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {

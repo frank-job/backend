@@ -394,3 +394,115 @@ footer {
     background-color: var(--white);
     color: var(--secondary);
 }
+
+
+/* week 3 */
+
+.project-card {
+    background-color: whitesmoke;
+    /* Clean white background */
+    color: var(--text-main);
+    /* Dark text (60%) */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border-top: 6px solid var(--brand-primary);
+    /* Your Blue (30%) */
+
+    /* Layout Fix */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-out;
+
+    /* Remove fixed height to let content breathe */
+    max-width: 100%;
+    min-height: 250px;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix the Title */
+.project-card h2 a {
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* Fix the "Sponsored by" text */
+.sponsored-by {
+    font-size: 0.9rem;
+    color: #64748b;
+    /* Grayish blue */
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.sponsored-by a {
+    color: var(--text-main);
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+}
+
+/* The Button */
+.view-details-btn {
+    align-self: flex-start;
+    /* Keeps button on the left */
+    background-color: var(--brand-primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: auto;
+    /* Pushes button to the bottom */
+}
+
+.view-details-btn:hover {
+    background-color: var(--brand-dark);
+}
+
+
+
+
+
+
+
+
+.container-project-details {
+    margin-top: 20px;
+    max-width: 800px;
+    /* margin: 0 auto; */
+    padding: 20px;
+    background-color: var(--background);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    gap: 60px;
+}
+.meta-info {
+    font-style: italic;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.project-description {
+    text-align: left;
+    font-size: 0.95rem;
+    margin-top: 15px;
+}
+
+.card-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    flex: 1;
+}
