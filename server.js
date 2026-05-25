@@ -2,12 +2,19 @@
 // import { getAllCategories } from './src/models/categories.js';
 // import { getAllOrganizations } from './src/models/organizations.js';
 // import { getAllProjects } from './src/models/projects.js';
-import { testConnection } from './src/models/db.js';
-import router from './src/routes.js';   
 import express from 'express';
+
+
+
+
+
 import { fileURLToPath } from 'url';
 import path from 'path';
 import console from 'console';
+import session from 'express-session';
+import flash from './src/middleware/flash.js';
+import { testConnection } from './src/models/db.js';
+import router from './src/routes.js';
 
 
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -17,7 +24,24 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const SESSION_SECRET = process.env.SESSION_SECRET;
+
+
+
 const app = express();
+
+
+
+// Set up session management
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
+}));
+
+// Use flash message middleware
+app.use(flash);
 
 // Middleware to log all incoming requests
 app.use((req, res, next) => {
@@ -38,6 +62,10 @@ app.set('view engine', 'ejs');
 // Tell Express where to find your templates
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'src/views'));
+
+// Allow Express to receive and process common POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // app.get('/', async (req, res) => {
 //     const title = 'Home';
@@ -73,6 +101,8 @@ app.set('views', path.join(__dirname, 'src/views'));
 
 // Use the router for all routes
 app.use(router);
+
+
 
 
 

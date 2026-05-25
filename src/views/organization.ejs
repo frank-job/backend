@@ -1,38 +1,43 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-
+    <main class="container">
         <% if (organizationDetails) { %>
-            <h2>
-                <%= organizationDetails.name %>
-            </h2>
-            <img src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
+            <section class="project-details-card">
+                <h1>
+                    <%= organizationDetails.name %>
+                </h1>
+                <img src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo"
+                    style="max-width: 200px;">
 
-            <p>
-                Description: <%= organizationDetails.description %>
-            </p>
-            <p>
-                Contact: <%= organizationDetails.contact_email %>
-            </p>
+                <div class="meta-info">
+                    <p><strong>Contact:</strong>
+                        <%= organizationDetails.contact_email %>
+                    </p>
+                    <p><strong>About:</strong>
+                        <%= organizationDetails.description %>
+                    </p>
+                </div>
 
-            <h3>Service Projects</h3>
-            <ul>
-                <% if (projects && projects.length> 0) { %>
-                    <% projects.forEach(project=> { %>
-                        <li>
-                            <a href="/project/<%= project.project_id %>">
-                                <%= project.title %>
-                            </a>
-                        </li>
-                        <% }); %>
-                            <% } else { %>
-                                <li>No projects found for this organization.</li>
-                                <% } %>
-            </ul>
+                <h3>Upcoming Projects from this Partner</h3>
+                <ul class="grid-list">
+                    <% if (projects && projects.length> 0) { %>
+                        <% projects.forEach(project=> { %>
+                            <li class="project-card">
+                                <strong><a href="/project/<%= project.project_id %>">
+                                        <%= project.title %>
+                                    </a></strong>
+                                <p>
+                                    <%= project.location %>
+                                </p>
+                            </li>
+                            <% }); %>
+                                <% } else { %>
+                                    <li>No projects found for this organization.</li>
+                                    <% } %>
+                </ul>
+            </section>
             <% } else { %>
                 <p>Organization not found.</p>
                 <% } %>
     </main>
+ 
     <%- include('partials/footer') %>

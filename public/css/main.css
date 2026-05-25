@@ -506,3 +506,112 @@ footer {
     gap: 30px;
     flex: 1;
 }
+
+/* form  */
+
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button[type="submit"] {
+    background: #007bff;
+    color: #fff;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+
+.bttn {
+    display: inline-block;
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+} 
+
+a:hover {
+    background: var(--brand-primary);
+    transform: translateY(-2px);
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* Flash message styles */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert.warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
