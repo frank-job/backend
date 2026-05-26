@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     background-color: lightblue;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -27,7 +28,7 @@ body {
             }
         }
     }
-} 
+}
 
 
 
@@ -49,8 +50,8 @@ body {
 
 /* body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif; */
-    /* line-height: 1.6; */
-    /* color: var(--text);
+/* line-height: 1.6; */
+/* color: var(--text);
     background-color: var(--background);
 } */
 
@@ -108,34 +109,36 @@ h1 {
     font-size: 2.5rem;
 
 }
+
 /* 1. The Container */
-ul.grid-list {
+.grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 20px;
     list-style: none;
-    padding: 20px;
+    /* padding: 20px; */
     margin-top: 30px;
-   background-color: white;
+    /* background-color: white; */
     border-radius: 12px;
     box-shadow: var(--shadow);
+    /* height: 400px; */
+    width: 100%;
 }
 
 /* 2. The Card "Cool Move" Logic */
 .project-card {
     display: grid;
-    background-color: var(--secondary);
+
     border-radius: 12px;
-    padding: 25px;
+
     box-shadow: var(--shadow);
     border-top: 6px solid var(--brand-primary);
-    gap: 35px;
+
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     animation: fadeIn 0.8s ease-out;
     color: var(--secondary);
-    /* Your fade animation */
+    /* background-color: whitesmoke; */
 
-    /* Default Mobile Layout Areas */
     grid-template-areas:
         "title"
         "img"
@@ -332,7 +335,7 @@ img {
 
 
 
-ul.grid-list li img {
+.grid-list li img {
 
     width: 100%;
     height: 180px;
@@ -368,6 +371,7 @@ ul.grid-list li:hover img {
     justify-content: center;
     align-items: center;
 }
+
 footer {
     background-color: var(--secondary);
     color: var(--white);
@@ -378,21 +382,21 @@ footer {
 
 .btn-small {
     margin-bottom: 100px;
-    padding: 4px 5px;
+    padding: 10px 5px;
     font-size: 0.875rem;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: var(--secondary);
     color: var(--white);
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
     text-decoration: none;
-    /* /* margin-bottom: 10px; */
+
 }
 
 .btn-small:hover {
-    background-color: var(--white);
-    color: var(--secondary);
+    background-color: var(--primary-dark);
+    color: var(--white);
 }
 
 
@@ -400,16 +404,14 @@ footer {
 
 .project-card {
     background-color: whitesmoke;
-    /* Clean white background */
+
     color: var(--text-main);
-    /* Dark text (60%) */
+
     border-radius: 12px;
     padding: 30px;
     box-shadow: var(--shadow-md);
     border-top: 6px solid var(--brand-primary);
-    /* Your Blue (30%) */
 
-    /* Layout Fix */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -418,8 +420,8 @@ footer {
     animation: fadeIn 0.8s ease-out;
 
     /* Remove fixed height to let content breathe */
-    max-width: 100%;
-    min-height: 250px;
+    /* max-width: 100%; */
+    min-height: 200px;
 }
 
 .project-card:hover {
@@ -454,9 +456,8 @@ footer {
 /* The Button */
 .view-details-btn {
     align-self: flex-start;
-    /* Keeps button on the left */
-    background-color: var(--brand-primary);
-    color: white;
+    color: var(--white);
+    background-color: var(--secondary);
     padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
@@ -467,7 +468,8 @@ footer {
 }
 
 .view-details-btn:hover {
-    background-color: var(--brand-dark);
+    background-color: var(--primary-dark);
+    color: var(--white);
 }
 
 
@@ -487,6 +489,7 @@ footer {
     box-shadow: var(--shadow);
     gap: 60px;
 }
+
 .meta-info {
     font-style: italic;
     color: #666;
@@ -501,12 +504,141 @@ footer {
 }
 
 .card-actions {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     display: flex;
-    gap: 30px;
-    flex: 1;
+    justify-content: flex-start;
+    gap: 10px;
+    flex: 2;
 }
 
+.btn-small-1 {
+    padding: 10px 8px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-small-1:hover {
+    background-color: var(--primary-dark);
+    color: var(--white);
+}
+
+
+.btn-big a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 8px;
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.btn-big a:hover {
+    background-color: var(--primary-dark);
+    color: var(--white);
+}
+.btn-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.btn-actions .btn-small {
+    margin-bottom: 0;
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-actions .btn-small:first-child {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.btn-actions .btn-small:last-child {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+}
+
+.btn-actions .btn-small:last-child:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.grid-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    list-style: none;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.grid-categories li {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border-top: 6px solid var(--secondary);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 380px;
+}
+
+.grid-categories li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.grid-categories li img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.grid-categories li:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.grid-categories li strong {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.grid-categories li .category-desc {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1;
+}
 /* form  */
 
 form {
@@ -571,7 +703,7 @@ button[type="submit"]:hover {
     font-size: 15px;
     font-weight: bold;
     transition: background 0.3s, transform 0.2s;
-} 
+}
 
 a:hover {
     background: var(--brand-primary);

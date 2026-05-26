@@ -2,7 +2,7 @@
 
     <main>
         <h1>Service Categories</h1>
-        <ul class="grid-list">
+        <ul class="grid-categories">
             <% categories.forEach(category=> { %>
                 <li>
                     <img src="/images/<%= category.category_image %>" alt="<%= category.category_name %> icon">
@@ -16,7 +16,10 @@
                         <%= category.category_description %>
                     </p>
                     <!-- Inside the EJS loop -->
+                     <div class="btn-actions">
                     <a href="#" class="btn-small">View Projects</a>
+                    <a href="/assign-categories/<%= project.project_id %>" class="btn-small">Edit Categories</a>
+                    </div>
                 </li>
                 <% }); %>
         </ul>

@@ -7,7 +7,7 @@ import { testErrorPage } from './controllers/errors.js';
 import { showNewOrganizationForm } from './controllers/organizations.js';
 import { processNewOrganizationForm, organizationValidation,showEditOrganizationForm,processEditOrganizationForm } from './controllers/organizations.js';
 
-
+import { showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 
 const router = express.Router();
 
@@ -33,4 +33,7 @@ router.get('/new-project', showNewProjectForm);
 
 // Route to handle new project form submission
 router.post('/new-project', processNewProjectForm, projectValidation);
+
+router.get('/assign-categories/:projectId', showAssignCategoriesForm);
+router.post('/assign-categories/:projectId', processAssignCategoriesForm);
 export default router;
