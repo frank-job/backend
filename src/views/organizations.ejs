@@ -1,4 +1,5 @@
 <%- include('partials/header') %>
+
     <main class="container">
         <h1>
             <%= title %>
@@ -15,12 +16,13 @@
                     <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
                     <p>
                         <%= organization.description %>
+
                     </p>
-                    <a href="/organization/<%= organization.organization_id %>" class="view-details-btn">View
-                        Profile</a>
+                    <p><a href="/edit-organization/<%= organization.organization_id %>" class="btn-small">Edit Organization</a></p>
                 </li>
-                <% }); %>
+                <% }); %> <!-- THE LOOP ENDS HERE -->
         </ul>
+        <p><a href="/new-organization" class="view-details-btn">Add a new organization</a></p>
     </main>
-    <p class="bttn"><a href="/new-organization">Add a new organization</a></p>
-    <%- include('partials/footer') %>
+
+    <%- include('partials/footer') %> <!-- THE FOOTER MUST BE DOWN HERE, OUTSIDE THE LOOP -->
