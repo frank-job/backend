@@ -1,6 +1,6 @@
 import express from 'express';
 import { showOrganizationDetailsPage, showOrganizationsPage,  } from './controllers/organizations.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm  } from './controllers/projects.js';
 import { showHomePage } from './controllers/index.js';
 import { showCategoriesPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
@@ -9,6 +9,7 @@ import { processNewOrganizationForm, organizationValidation,showEditOrganization
 
 import { showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 
+import{ showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout} from './controllers/users.js';
 const router = express.Router();
 
 router.get('/', showHomePage);
@@ -36,4 +37,17 @@ router.post('/new-project', processNewProjectForm, projectValidation);
 
 router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+
+
+router.get('/edit-project/:projectId', showEditProjectForm);
+router.post('/edit-project/:projectId', processEditProjectForm);
+
+
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
+
+// User login routes
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
 export default router;
