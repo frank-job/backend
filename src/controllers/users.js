@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { createUser, authenticateUser } from '../models/users.js';
+import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
  
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
@@ -39,20 +39,21 @@ const processLoginForm = async (req, res) => {
             // Store user info in session
             req.session.user = user;
             req.flash('success', 'Login successful! welcome back boss u are on right track');
-
-            if (res.locals.NODE_ENV === 'development') {
-                console.log('User logged in:', user);
+            
+            // Redirect admin to dashboard, regular users to user dashboard
+            if (user.role_name === 'admin') {
+                return res.redirect('/dashboard');
+            } else {
+                return res.redirect('/user-dashboard');
             }
-
-            res.redirect('/');
         } else {
             req.flash('error', 'Invalid email or password boss check properly your password.');
             res.redirect('/login');
         }
     } catch (error) {
-        console.error('Error during login:', error);
-        req.flash('error', 'How many time do want to sign sir or madam? i will kick u.');
-        res.redirect('/login');
+         console.error('Error during login:', error);
+        req.flash('error', 'Something went wrong on our side. Please try again.');
+        return res.redirect('/login');
     }
 };
 
@@ -64,4 +65,84 @@ const processLogout = async (req, res) => {
     req.flash('success', 'Logout successful! thanks for comimg back soon.');
     res.redirect('/login');
 };
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout };
+
+const requireLogin = (req, res, next) => {
+    if (!req.session || !req.session.user) {
+        req.flash('error', 'You must be logged in to access that page.');
+        return res.redirect('/login');
+    }
+    next();
+};
+
+const requireAdmin = (req, res, next) => {
+    if (!req.session.user || req.session.user.role_name !== 'admin') {
+        req.flash('error', 'Access granted only to admin users');
+        return res.redirect('/dashboard');
+    }
+    next();
+};
+
+
+const showDashboard = (req, res) => {
+    const user = req.session.user;
+    res.render('dashboard', { 
+        title: 'Dashboard',
+        name: user.name,
+        email: user.email,
+        isAdmin: user.role_name === 'admin'
+    });
+};
+
+const showUserDashboard = (req, res) => {
+    const user = req.session.user;
+    res.render('user-dashboard', { 
+        title: 'My Dashboard',
+        name: user.name,
+        email: user.email,
+        isAdmin: user.role_name === 'admin'
+    });
+};
+
+const showUsersPage = async (req, res) => {
+    try {
+        const users = await getAllUsers();
+        res.render('users', {
+            title: 'Users',
+            users: users,
+            isAdmin: req.session.user.role_name === 'admin'
+        });
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        req.flash('error', 'Error loading users page');
+        res.redirect('/dashboard');
+    }
+};
+
+
+/**
+ * Middleware factory to require specific role for route access
+ * Returns middleware that checks if user has the required role
+ * 
+ * @param {string} role - The role name required (e.g., 'admin', 'user')
+ * @returns {Function} Express middleware function
+ */
+const requireRole = (role) => {
+    return (req, res, next) => {
+        // Check if user is logged in first
+        if (!req.session || !req.session.user) {
+            req.flash('error', 'You must be logged in to access this page.');
+            return res.redirect('/login');
+        }
+
+        // Check if user's role matches the required role
+        if (req.session.user.role_name !== role) {
+            req.flash('error', 'You do not have permission to access this page.');
+            return res.redirect('/');
+        }
+
+        // User has required role, continue
+        next();
+    };
+};
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, requireAdmin, showDashboard, showUserDashboard, showUsersPage, requireRole };

@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Welcome, <%= name %>!</h1>
+            <p class="lead">You're logged in as a regular user.</p>
+
+            <div class="alert alert-info">
+                <strong>Account Info:</strong>
+                <ul>
+                    <!-- <li><strong>Name:</strong> <%= name %></li> -->
+                    <li><strong>Email:</strong> <%= email %></li>
+                    <li><strong>Role:</strong> User</li>
+                </ul>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Available Features</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="/projects">View Projects</a> - Browse all available volunteer projects
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/organizations">View Organizations</a> - See all partner organizations
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/categories">View Categories</a> - Explore project categories
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="/logout" class="btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -747,3 +747,42 @@ p {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+
+.card-body {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-top: 20px;
+    display: flex;
+    /* flex-direction: column; */
+    gap: 15px;
+    align-items: center;
+}
+.list-group-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.mt-4 {
+    margin-top: 20px;
+}
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    top: 20px;
+    /* margin-bottom: 20px; */
+}
+.btn-danger:hover {
+    background-color: blue;
+    transform: translateY(-2px);
+    /* text-decoration-color: red; */
+    color: red
+}

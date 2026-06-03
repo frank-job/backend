@@ -1,4 +1,5 @@
 import db from './src/models/db.js';
+import bcrypt from 'bcrypt';
 
 async function run() {
     try {
@@ -28,6 +29,28 @@ async function run() {
                 ON CONFLICT DO NOTHING;
             `);
             console.log("Sample mappings inserted!");
+        }
+
+        // Create admin user if it doesn't exist
+        console.log("Creating admin user if not exists...");
+        const adminExists = await db.query('SELECT * FROM users WHERE email = $1', ['admin@example.com']);
+        
+        if (adminExists.rows.length === 0) {
+            // Hash the password
+            const password = 'cse340!';
+            const salt = await bcrypt.genSalt(10);
+            const passwordHash = await bcrypt.hash(password, salt);
+            
+            // Create the admin user
+            await db.query(`
+                INSERT INTO users (name, email, password_hash, role_id)
+                VALUES ($1, $2, $3, (SELECT role_id FROM roles WHERE role_name = $4))
+            `, ['Admin User', 'admin@example.com', passwordHash, 'admin']);
+            
+            console.log("Admin user created successfully!");
+            console.log("Admin credentials: email=admin@example.com, password=cse340!");
+        } else {
+            console.log("Admin user already exists!");
         }
 
     } catch (err) {

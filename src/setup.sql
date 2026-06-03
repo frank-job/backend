@@ -78,6 +78,13 @@ CREATE TABLE roles (
 	role_description TEXT
 );
 
+INSERT INTO roles (role_name, role_description)
+VALUES
+    ('user', 'Regular user with limited access')    
+	('admin', 'Administrator with full access'),
+	
+ON CONFLICT DO NOTHING;
+
 CREATE TABLE users (
 	user_id SERIAL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,

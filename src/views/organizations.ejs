@@ -18,11 +18,18 @@
                         <%= organization.description %>
 
                     </p>
+                    <% if (user && user.role_name === 'admin') { %>
                     <p><a href="/edit-organization/<%= organization.organization_id %>" class="btn-small">Edit Organization</a></p>
+                    <% } %>
                 </li>
                 <% }); %> <!-- THE LOOP ENDS HERE -->
         </ul>
-        <p><a href="/new-organization" class="view-details-btn">Add a new organization</a></p>
+        <% if (user && user.role_name === 'admin') { %>
+    <a href="/new-organization">Add New Organization</a>
+<% } %>
+        <!-- <p><a href="/new-organization" class="view-details-btn">Add a new organization</a></p> -->
+       
     </main>
 
     <%- include('partials/footer') %> <!-- THE FOOTER MUST BE DOWN HERE, OUTSIDE THE LOOP -->
+

@@ -18,9 +18,11 @@
             </p>
 
             <div class="card-actions">
-                <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="view-details-btn">Edit Organization</a>
-                <a href="/new-organization" class="view-details-btn">Create New Organization</a>
-            </div>
+                    <% if (user && user.role_name === 'admin') { %>
+                    <a href="/edit-organization/<%= organizationDetails.organization_id %>" class="view-details-btn">Edit Organization</a>
+                    <a href="/new-organization" class="view-details-btn">Create New Organization</a>
+                    <% } %>
+                </div>
 
             <h3>Service Projects</h3>
             <ul>
