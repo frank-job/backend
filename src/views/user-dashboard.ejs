@@ -40,5 +40,21 @@
         </div>
     </div>
 </div>
+<h3>My Volunteer Projects</h3>
+<% if (volunteeredProjects.length > 0) { %>
+    <ul class="grid-list">
+        <% volunteeredProjects.forEach(p => { %>
+            <li class="project-card">
+                <strong><%= p.title %></strong>
+                <p>Sponsored by: <%= p.organization_name %></p>
+                <form action="/project/unvolunteer/<%= p.project_id %>" method="POST">
+                    <button type="submit" class="btn-small secondary">Remove</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+<% } else { %>
+    <p>You haven't signed up for any projects yet.</p>
+<% } %>
 
 <%- include('partials/footer') %>

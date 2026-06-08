@@ -139,6 +139,15 @@ const updateProject = async(projectId, title, description, date, location, organ
     return result.rows[0].project_id;
 }
 
+//  const getVolunteeredProjects = async (userId) => {
+//     const query = `
+//         SELECT p.* 
+//         FROM project p
+//         JOIN project_volunteer pv ON p.project_id = pv.project_id
+//         WHERE pv.user_id = $1`;
+//     const result = await db.query(query, [userId]);
+//     return result.rows;
+// };
 
 
 

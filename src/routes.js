@@ -1,18 +1,17 @@
 import express from 'express';
 import { showOrganizationDetailsPage, showOrganizationsPage,  } from './controllers/organizations.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm  } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm,handleVolunteerAction, handleUnvolunteerAction  } from './controllers/projects.js';
 import { showHomePage } from './controllers/index.js';
 import { showCategoriesPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { showNewOrganizationForm } from './controllers/organizations.js';
 import { processNewOrganizationForm, organizationValidation,showEditOrganizationForm,processEditOrganizationForm } from './controllers/organizations.js';
-
 import { showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 import { showUserRegistrationForm, 
    processUserRegistrationForm, 
    showLoginForm, 
    processLoginForm, 
-   processLogout, 
+   processLogout,
    requireLogin,
    requireAdmin,
    showDashboard,
@@ -70,5 +69,8 @@ router.get('/user-dashboard', requireLogin, showUserDashboard);
 
 // Users page - admin only
 router.get('/users', requireLogin, requireAdmin, showUsersPage);
+
+router.post('/project/volunteer/:id', requireLogin, handleVolunteerAction);
+router.post('/project/unvolunteer/:id', requireLogin, handleUnvolunteerAction);
 
 export default router;

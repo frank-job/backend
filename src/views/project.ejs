@@ -30,14 +30,30 @@
                 </p>
             </div>
 
-            <div class="actions">
-                <% if (user && user.role_name === 'admin') { %>
-                <a href="/edit-project/<%= project.project_id %>" class="btn-small">Edit Project</a>
-                <a href="/assign-categories/<%= project.project_id %>" class="btn-small secondary">Assign Categories</a>
-                <% } %>
-                <a href="/projects" class="btn-small secondary">Back to Projects</a>
-                <button class="btn-small">Sign Up to Volunteer</button>
-            </div>
+         <!-- Replace your single <button> with this logic -->
+<div class="volunteer-actions" style="display: inline-block;">
+    <% if (locals.user) { %>
+        <% if (isVolunteering) { %>
+            <!-- User is already signed up: Show 'Stop' button -->
+            <form action="/project/unvolunteer/<%= project.project_id %>" method="POST" style="display: inline;">
+                <button type="submit" class="btn-small" style="background-color: #ef4444; border: none;">
+                    Stop Volunteering
+                </button>
+            </form>
+            <p style="color: #166534; font-size: 0.85rem; margin-top: 5px;">✓ You are on the list!</p>
+        <% } else { %>
+            <!-- User is logged in but not signed up: Show 'Join' button -->
+            <form action="/project/volunteer/<%= project.project_id %>" method="POST" style="display: inline;">
+                <button type="submit" class="btn-small" style="background-color: var(--accent); border: none;">
+                    Sign Up to Volunteer
+                </button>
+            </form>
+        <% } %>
+    <% } else { %>
+        <!-- User is not logged in -->
+        <a href="/login" class="btn-small" style="text-decoration: none;">Login to Volunteer</a>
+    <% } %>
+</div>
         </section>
     </main>
 

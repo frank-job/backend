@@ -1,11 +1,8 @@
 // Import any needed model functions
 import { getUpcomingProjects, getProjectDetails, createProject, updateProject } from '../models/projects.js';
 import { getAllOrganizations } from '../models/organizations.js';
-
-// Import the body and validationResult functions from the express - validator package.
+import { addVolunteer, removeVolunteer, isUserVolunteering } from '../models/Volunteer.js';
 import { body, validationResult } from 'express-validator';
-
-// 2. Create the constant for the limit
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
 
 /**
@@ -14,16 +11,13 @@ const NUMBER_OF_UPCOMING_PROJECTS = 5;
  */
 export const showProjectsPage = async (req, res, next) => {
     try {
-        // Call the model function with our constant (5)
         const projects = await getUpcomingProjects(NUMBER_OF_UPCOMING_PROJECTS);
 
-        // Render the list page with the new title
         res.render('projects', {
             title: 'Upcoming Service Projects',
             projects
         });
     } catch (error) {
-        // Pass the error to our global error handler
         next(error);
     }
 };
@@ -34,27 +28,23 @@ export const showProjectsPage = async (req, res, next) => {
  */
 export const showProjectDetailsPage = async (req, res, next) => {
     try {
-        // 3. Extract the ID from the URL parameters (:id)
         const id = req.params.id;
-
-        // 4. Use the model function to get that specific project
         const project = await getProjectDetails(id);
 
-        // 5. If no project is found, we should trigger a 404
-        if (!project) {
-            const error = new Error('Project not found');
-            error.status = 404;
-            return next(error);
+        // 1. Check the volunteer status
+        let isVolunteering = false;
+        if (req.session.user) {
+            // Check if THIS user is signed up for THIS project
+            isVolunteering = await isUserVolunteering(id, req.session.user.user_id);
         }
 
-        // 6. Render the NEW details view (project.ejs)
-        res.render('project', {
-            title: project.title, // Use the project's actual name as the page title
-            project: project
+        // 2. Pass 'isVolunteering' to the EJS file
+        res.render('project', { 
+            title: project.title, 
+            project, 
+            isVolunteering  // This is the "Switch" for the UI
         });
-    } catch (error) {
-        next(error);
-    }
+    } catch (error) { next(error); }
 };
 
 const showNewProjectForm = async (req, res) => {
@@ -165,7 +155,30 @@ const processEditProjectForm = async (req, res) => {
         res.redirect(`/edit-project/${projectId}`);
     }
 }
-    
+ 
+export const handleVolunteerAction = async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const userId = req.session.user.user_id;
+
+        await addVolunteer(projectId, userId);
+        req.flash('success', 'You have successfully signed up for this project!');
+        res.redirect(`/project/${projectId}`);
+    } catch (error) { next(error); }
+};
+
+export const handleUnvolunteerAction = async (req, res, next) => {
+    try {
+        const projectId = req.params.id;
+        const userId = req.session.user.user_id;
+
+        await removeVolunteer(projectId, userId);
+        req.flash('success', 'You have been removed from the volunteer list.');
+        res.redirect('back'); // Sends them back to wherever they clicked from
+    } catch (error) { next(error); }
+};
+// Add the model import at the top
+
 export {
     showNewProjectForm,
     processNewProjectForm,

@@ -1,6 +1,41 @@
 import db from './db.js'
 import bcrypt from 'bcrypt';
+// Add this import if it's not there!
+import { getVolunteeredProjects } from '../models/Volunteer.js';
 
+// export const showUserDashboard = async (req, res, next) => {
+//     const user = req.session.user;
+//     try {
+//         // 1. Fetch the data from the model
+//         const volunteeredProjects = await getVolunteeredProjects(user.user_id);
+
+//         // 2. PASS IT TO THE RENDER CALL (The part you keep missing!)
+//         res.render('user-dashboard', {
+//             title: 'My Dashboard',
+//             user: user,
+//             volunteeredProjects: volunteeredProjects // <-- THIS IS THE FIX
+//         });
+//     } catch (error) {
+//         next(error);
+//     }
+// };
+
+export const showUserDashboard = async (req, res, next) => {
+    const user = req.session.user;
+    try {
+        // 1. Fetch the data from the model
+        const volunteeredProjects = await getVolunteeredProjects(user.user_id);
+
+        // 2. PASS IT TO THE RENDER CALL (The part you keep missing!)
+        res.render('user-dashboard', { 
+            title: 'My Dashboard',
+            user: user,
+            volunteeredProjects: volunteeredProjects // <-- THIS IS THE FIX
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 const createUser  = async(name, email, passwordHash) => {
     const default_role = 'user';
    const query = `

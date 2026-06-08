@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { createUser, authenticateUser, getAllUsers } from '../models/users.js';
- 
+import { getVolunteeredProjects } from '../models/Volunteer.js';
+
 const showUserRegistrationForm = (req, res) => {
     res.render('register', { title: 'Register' });
 };
@@ -93,15 +94,23 @@ const showDashboard = (req, res) => {
     });
 };
 
-const showUserDashboard = (req, res) => {
-    const user = req.session.user;
-    res.render('user-dashboard', { 
-        title: 'My Dashboard',
-        name: user.name,
-        email: user.email,
-        isAdmin: user.role_name === 'admin'
-    });
+const showUserDashboard = async (req, res, next) => {
+    try {
+        const user = req.session.user;
+        const volunteeredProjects = await getVolunteeredProjects(user.user_id);
+
+        res.render('user-dashboard', { 
+            title: 'My Dashboard',
+            name: user.name,
+            email: user.email,
+            isAdmin: user.role_name === 'admin',
+            volunteeredProjects
+        });
+    } catch (error) {
+        next(error);
+    }
 };
+
 
 const showUsersPage = async (req, res) => {
     try {
@@ -144,5 +153,20 @@ const requireRole = (role) => {
         next();
     };
 };
+// Copy and paste this to replace your current export statement
+export { 
+    showUserRegistrationForm, 
+    processUserRegistrationForm, 
+    showLoginForm, 
+    processLoginForm, 
+    processLogout, 
+    requireLogin, 
+    requireAdmin, 
+    showDashboard,
+    showUserDashboard, 
+    showUsersPage, 
+    requireRole 
+};
+ 
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, requireAdmin, showDashboard, showUserDashboard, showUsersPage, requireRole };
+// // 2. Update the dashboard function

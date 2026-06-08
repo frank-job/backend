@@ -95,10 +95,22 @@ CREATE TABLE users (
 
 	
 );
+-- -- ========================================
+-- -- Create Project_Volunteer Join Table
+-- -- ========================================
+-- CREATE TABLE IF NOT EXISTS project_volunteer (
+--     project_id INT REFERENCES project(project_id) ON DELETE CASCADE,
+--     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+--     PRIMARY KEY (project_id, user_id)
+-- );
 
 
-
-
+-- Create the missing Join Table
+CREATE TABLE IF NOT EXISTS project_volunteer (
+    project_id INT REFERENCES project(project_id) ON DELETE CASCADE,
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+    PRIMARY KEY (project_id, user_id)
+);
 
 SELECT * FROM organization;
 SELECT * FROM category;
